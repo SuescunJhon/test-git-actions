@@ -9,6 +9,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20' # Especifica la versión de Node.js que deseas usar
       - name: create .env.test
         run: echo "${{secrets.ENV_TEST_CONTENT}}" > .env.test
       - name: Install Dependencies
