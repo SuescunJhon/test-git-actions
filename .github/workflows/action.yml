@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+      - name: create .env.test
+        run: echo "${{secrets.ENV_TEST_CONTENT}}" > .env.test
       - name: Install Dependencies
         run: npm install
       - name: Run Tests
