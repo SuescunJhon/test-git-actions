@@ -9,13 +9,22 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '20' # Especifica la versión de Node.js que deseas usar
+          node-version: '20'
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: '6.0'
+
       - name: create .env.test
         run: echo "${{secrets.ENV_TEST_CONTENT}}" > .env.test
+
       - name: Install Dependencies
         run: npm install
+        
       - name: Run Tests
         run: npm test
